@@ -323,6 +323,6 @@
 
         if (!$.browser.chrome) {
 
-        	window.location = 'chrome.html';
+        	window.location = 'http://glass-yourself.com/browser/chrome.html';
 
         }
