@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Glass Yourself: Test-drive the new Google Glass frames</title>
+        <meta name="description" content="Test-drive the new Google Glass frames" />
+        <meta property="og:image" content="http://www.gpop-server.com/glass-yourself/glass-yourself.jpg" />
+        <meta property="og:title" content="Glass Yourself" />
+        <meta property="og:url" content="Glass Yourself" />
+        <meta property="og:url" content="http://www.glass-yourself.com/" />
+        <meta property="og:description" content="Test-drive the new Google Glass frames" />
+
+        <style>
+            body {
+                font-family: sans-serif;
+                font-size: 17px;
+                line-height: 24px;
+                height: 100%;
+                margin: 0;
+                background-color: #f6f6f6;
+                text-align:center;
+            }
+
+            #info {
+                position: absolute;
+                width: 830px;;
+                height: 30px;
+                top: 50%;
+                margin-top: -15px;
+                margin-left:80px;
+                text-align:right;
+            }
+
+            #output {
+                width: 640px;
+                height: 480px;
+                background: black;
+                -webkit-transform: scale(-1, 1);
+                float:right;
+            }
+
+            #video{
+
+            }
+
+
+            #content{
+                float:left;
+                width:300px;
+            }
+
+            #canvas{ 
+
+                -webkit-transform: scale(-1, 1); 
+
+            }
+
+            #container{
+                width:940px;
+                position: absolute;
+                top:50%;
+                margin-top:-355px;
+                left:50%;
+                margin-left:-500px;
+
+            }
+            
+            #inner{
+                border: 1px solid #ebebeb;
+                -webkit-box-shadow: 3px 3px 40px 3px rgba(0,0,0,.05);
+                box-shadow: 3px 3px 40px 3px rgba(0,0,0,.05);
+                background-color:#FFFFFF;  
+                height:480px;
+                width:940px;
+            }
+
+            #social{
+                width:700px;
+                margin-top:15px;
+                font-size:12px;
+                color:#999999;
+            }
+            
+            #social a{
+                color:#999999;
+                font-weight:bold;
+            }
+            
+            #social a:hover{
+               
+                text-decoration:none;
+                
+            }
+            
+
+        </style>
+
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    </head>
+    
+    <body>
+        
+      <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=388098267890826";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+    <center>
+
+        <div id="container"> 
+
+            <img src="top-logo.png" height='100'>
+            <!--        <div id="logo" style="position:absolute; left:2%; top:2%; z-index:1;"> <a href='http://gpop.us' target='_blank'><img src='logo.png' s width="382"></a></div>-->
+            <!--<img src='take-a-picture.png' style='position:absolute; right:20px; top:20px; z-index:1;'>-->
+            
+            <div id="inner">
+                <br><br><br><br> <a href='https://www.google.com/intl/en/chrome/browser/' target='_blank'><img src='chrome.jpg'></a>
+            </div>
+            <div id="social">
+                
+                <div id="facebook" style="float:left; width:330px; margin-right:10px;" > <div style='float:right;' class="fb-like" data-href="http://www.glass-yourself.com" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div></div>
+
+                <div id="gplus" style="float:left;width:330px; margin-top:2px;" > <div class="g-plusone" data-annotation="inline" data-width="300" data-href="http://www.glass-yourself.com"></div></div>
+                            "Glass Yourself" was developed by the team at <a href='http://gpop.us/pages/about-us?utm_source=glass-yourself&utm_medium=footer-link&utm_campaign=glass-yourself' target='_blank'>GPOP</a>. Want to get in touch? <a href='mailto:david@gpop.us,mail@ibrahimkabil.com,virginiapoltrack@gmail.com?subject=Glass Yourself'>Click here</a> to drop us a line!<br><br>
+
+            </div>
+        </div>
+        <script type="text/javascript">
+            (function() {
+                var po = document.createElement('script');
+                po.type = 'text/javascript';
+                po.async = true;
+                po.src = 'https://apis.google.com/js/platform.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(po, s);
+            })();
+        </script>
+    </center>
+    <script>
+    
+        // Put event listeners into place
+        window.addEventListener("DOMContentLoaded", function() {
+            // Grab elements, create settings, etc.
+            var canvas = document.getElementById("canvas"),
+                    context = canvas.getContext("2d"),
+                    video = document.getElementById("output"),
+                    videoObj = {"video": true},
+            errBack = function(error) {
+                console.log("Video capture error: ", error.code);
+            };
+
+            // Trigger photo take
+            document.getElementById("snap").addEventListener("click", function() {
+                context.drawImage(video, 0, 0, 640, 480);
+                $('#canvas').show();
+                $('#snap').hide();
+                $('#try-again').show();
+                $('#good').show();
+            });
+        }, false);
+
+        function hideCanvas() {
+            $('#canvas').hide();
+        }
+
+        function prepareCanvas() {
+
+            $('#img').val(document.getElementById('canvas').toDataURL());
+            console.log(document.getElementById('canvas').toDataURL());
+            //document.forms.photo_upload.submit();
+
+        }
+
+        function try_again() {
+            $('#canvas').hide();
+            $('#snap').show();
+            $('#try-again').hide();
+            $('#good').hide();
+        }
+
+        // requestAnimationFrame shim
+        (function() {
+            var i = 0,
+                    lastTime = 0,
+                    vendors = ['ms', 'moz', 'webkit', 'o'];
+
+            while (i < vendors.length && !window.requestAnimationFrame) {
+                window.requestAnimationFrame = window[vendors[i] + 'RequestAnimationFrame'];
+                i++;
+            }
+
+            if (!window.requestAnimationFrame) {
+                window.requestAnimationFrame = function(callback, element) {
+                    var currTime = new Date().getTime(),
+                            timeToCall = Math.max(0, 1000 / 60 - currTime + lastTime),
+                            id = setTimeout(function() {
+                        callback(currTime + timeToCall);
+                    }, timeToCall);
+
+                    lastTime = currTime + timeToCall;
+                    return id;
+                };
+            }
+        }());
+
+        var App = {
+            start: function(stream) {
+
+                App.video.addEventListener('canplay', function() {
+                    App.video.removeEventListener('canplay');
+                    setTimeout(function() {
+
+                        App.video.play();
+
+                        //$('body').fadeIn();
+                        //$('.video').animate({right: 0}, 2000);
+
+                        App.canvas.style.display = 'inline';
+                        App.info.style.display = 'none';
+                        App.canvas.width = App.video.videoWidth;
+                        App.canvas.height = App.video.videoHeight;
+                        App.backCanvas.width = App.video.videoWidth / 4;
+                        App.backCanvas.height = App.video.videoHeight / 4;
+                        App.backContext = App.backCanvas.getContext('2d');
+
+                        var w = 707 / 4 * 0.8,
+                                h = 251 / 4 * 0.8;
+
+                        App.comp = [{
+                                x: (App.video.videoWidth / 4 - w) / 2,
+                                y: (App.video.videoHeight / 4 - h) / 2,
+                                width: w,
+                                height: h,
+                            }];
+
+                        App.drawToCanvas();
+                    }, 100);
+                }, true);
+
+                var domURL = window.URL || window.webkitURL;
+                App.video.src = domURL ? domURL.createObjectURL(stream) : stream;
+            },
+            denied: function() {
+                App.info.innerHTML = 'Camera access denied!<br>Please reload and try again.';
+            },
+            error: function(e) {
+                if (e) {
+                    console.error(e);
+                }
+                App.info.innerHTML = 'Please go to about:flags in Google Chrome and enable the &quot;MediaStream&quot; flag.';
+            },
+            drawToCanvas: function() {
+                requestAnimationFrame(App.drawToCanvas);
+
+                var video = App.video,
+                        ctx = App.context,
+                        backCtx = App.backContext,
+                        m = 4,
+                        w = 4,
+                        i,
+                        comp;
+
+                ctx.drawImage(video, 0, 0, App.canvas.width, App.canvas.height);
+
+                backCtx.drawImage(video, 0, 0, App.backCanvas.width, App.backCanvas.height);
+
+                comp = ccv.detect_objects(App.ccv = App.ccv || {
+                    canvas: App.backCanvas,
+                    cascade: cascade,
+                    interval: 2,
+                    min_neighbors: 2
+                });
+
+                if (comp.length) {
+                    App.comp = comp;
+                }
+
+                for (i = App.comp.length; i--; ) {
+
+
+                    if (typeof prevX === 'undefined') {
+                        prevX = 320;
+                        prevY = 0;
+                        prevWidth = 100;
+                        prevHeight = 100;
+                        App.comp[i].height = 100;
+                        App.comp[i].width = 100;
+                    }
+
+
+                    var glass_x_dest = (App.comp[i].x - w / 2) * m;
+                    var glass_x = prevX + (glass_x_dest - prevX) / 5;
+                    //var glass_x = glass_x_dest;
+
+                    var glass_y_dest = (((App.comp[i].y + 10) - w / 2) * m);
+                    var glass_y = prevY + (glass_y_dest - prevY) / 5;
+                    //var glass_y = glass_y_dest;
+
+                    var glass_height_dest = (App.comp[i].height + w) * m;
+                    var glass_height = prevHeight + (glass_height_dest - prevHeight) / 10;
+                    //var glass_height = glass_height_dest;
+
+                    var glass_width_dest = (App.comp[i].width + w) * m;
+                    var glass_width = prevWidth + (glass_width_dest - prevWidth) / 10;
+                    //var glass_width = glass_width_dest;
+
+                    prevX = glass_x;
+                    prevY = glass_y;
+                    prevWidth = glass_width;
+                    prevHeight = glass_height;
+                    //var glass_yscale_dest = (App.comp[i].height + w) * m;
+                    //var glass_yscale = App.comp[i].y + (glass_y_dest - App.comp[i].y) / 10;
+
+                    ctx.drawImage(App.glasses, glass_x, glass_y, glass_width, glass_height);
+                }
+            }
+        };
+
+        App.glasses = new Image();
+        App.glasses.src = 'thin.png';
+
+        App.init = function() {
+            App.video = document.createElement('video');
+            App.backCanvas = document.createElement('canvas');
+            App.canvas = document.querySelector('#output');
+            App.canvas.style.display = 'none';
+            App.context = App.canvas.getContext('2d');
+            App.info = document.querySelector('#info');
+
+            navigator.getUserMedia_ = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+            try {
+                navigator.getUserMedia_({
+                    video: true,
+                    audio: false
+                }, App.start, App.denied);
+            } catch (e) {
+                try {
+                    navigator.getUserMedia_('video', App.start, App.denied);
+                } catch (e) {
+                    App.error(e);
+                }
+            }
+
+            App.video.loop = App.video.muted = true;
+            App.video.load();
+        };
+
+        App.init();
+
+        function loadFrames(frame) {
+
+            App.glasses.src = frame + '.png';
+
+        }
+
+    </script>
+    
+    <iframe src='upload.php' height='400' width='400' name='upload' style='display:none;'></iframe>
+
+</body>
+</html>

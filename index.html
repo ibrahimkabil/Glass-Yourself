@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+
+        <title>Glass Yourself: Google Glass Frames Simulator</title>
+
+		<!-- Meta Tags -->
+        <meta name="description" content="Google Glass Frames Simulator" />
+        <meta property="og:image" content="imgs/glass-yourself-share.jpg" /> 
+        <meta property="og:title" content="Glass Yourself" />
+        <meta property="og:url" content="http://www.glass-yourself.com/" />
+        <meta property="og:description" content="Google Glass Frames Simulator" />
+
+		<!-- Javascript -->
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+		<!-- Meta Tags -->
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+    
+    </head>
+
+    <body>
+
+	<!-- Facebook Like -->
+
+    <div id="fb-root"></div>
+    
+    <script>   
+        
+        (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=388098267890826";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+            
+    </script>
+
+    <center>
+        
+        <br clear='all'> 
+        
+        <br clear='all'> 
+        
+        <br clear='all'>
+        
+        <div id="container"> 
+
+            <a href='http://www.glass-yourself.com'><img src="imgs/top-logo.png" height='100' border='0'></a>
+
+            <div id="inner">
+
+                <div id='info' ><img src='imgs/camera-access.jpg'></span></div>
+                
+                <embed  src="swf/glass-yourself-photo.swf" id="glass" quality="high"  width="220" height="165" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode='transparent' />
+
+                <canvas id="canvas" width="640" height='480'></canvas>
+                
+                <canvas id="output" ></canvas>
+
+                <script src="js/ccv.js"></script>
+                
+                <script src="js/face.js"></script>
+
+                <div id="content">
+                    <embed src="swf/select-style.swf" id="select-style" quality="high"  width="300" height="480" name="squambido" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+                </div>
+                
+            </div>
+            
+            <div id="social">
+
+                <div id='twitter' ><div id='twitter-inner' ><a id="a_34ea_0" href="https://twitter.com/share" class="twitter-share-button" data-counturl='http://www.glass-yourself.com' data-related="jasoncosta" data-lang="en" data-size="medium" data-count="horizontal">Tweet</a></div></div>
+                
+                <!-- Share on Twitter -->
+                
+                <script>
+                
+                	!function(d, s, id) {
+                		var js, fjs = d.getElementsByTagName(s)[0];
+                		if (!d.getElementById(id)) {
+                    		js = d.createElement(s);
+                  	  		js.id = id;
+                    		js.src = "https://platform.twitter.com/widgets.js";
+                    		fjs.parentNode.insertBefore(js, fjs);
+                		}
+            		}(document, "script", "twitter-wjs");
+            	
+            	</script>
+            
+                <div id="facebook">
+                
+                	<div class="fb-share-button" data-href="http://www.glass-yourself.com" data-type="button_count"></div>
+                
+                </div>
+
+                <div id="gplus">
+                
+                	<div class="g-plusone" data-annotation="inline" data-width="300" data-href="http://www.glass-yourself.com"></div> 
+                
+                </div>
+
+                <br clear='all'>
+                
+               "Glass Yourself" was developed by <a href='http://www.ibrahimkabil.com/?utm_source=glass-yourself&utm_medium=footer-link&utm_campaign=glass-yourself'>Ibrahim Kabil</a> at <a href='http://gpop.us/pages/about-us?utm_source=glass-yourself&utm_medium=footer-link&utm_campaign=glass-yourself' target='_blank'>GPOP</a>. <br clear='all'> <strong>All Glass image and sound assets &copy;2015 Google.</strong> 
+            
+            </div>
+
+        </div>
+
+    </center>
+    
+    <script type='text/javascript' src='js/functions.js'></script>
+    
+    <br clear='all'>
+    
+    <form id="form_34ea_0" action='php/upload.php' method='POST' name='photo_upload' target='uploader' enctype="multipart/form-data">
+
+        <!-- holds base-64 image data -->
+        <input type='hidden' name='img' id='img'>
+        <input type='hidden' name='file_id' id='file_id'>
+
+    </form>
+    
+    <iframe name="uploader" id="uploader" height="480" width="640"  src='php/upload.php'></iframe>
+    
+    <iframe name="html_file" id="html_file" height="480" width="640" ></iframe>
+
+</body>
+</html>
